@@ -29,4 +29,15 @@ router.post("/create-account", function(req, res) {
     })
 })
 
+router.post("/login", function(req, res) {
+    send(res, 'login', 'POST', 'sessions', {
+        "username": req.body.user,
+        "password": req.body.pass
+    })
+})
+
+router.post("/check-token", function(req, res) {
+    send(res, 'check-token', 'GET', 'users/current', undefined, req.body.token);
+})
+
 module.exports = router;

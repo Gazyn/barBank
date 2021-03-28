@@ -27,6 +27,27 @@ $(window).scroll(function() {
 
 const textDisplay = document.querySelector("#text-display")
 
+let loginData = {
+    isIn: false,
+    user: "",
+    token: ""
+}
+
+function resetLoginData() {
+    loginData = {
+        isIn: false,
+        user: "",
+        token: ""
+    }
+    localStorage.removeItem("loginData");
+    document.querySelector("#header-login").textContent = "";
+    document.querySelector("#logout-button").style.display = "none";
+}
+
+if(localStorage.hasOwnProperty("loginData")) {
+    loginData = JSON.parse(localStorage.getItem("loginData"));
+}
+
 function handleResponse(res) {
     res = JSON.parse(res);
     console.log(res);
@@ -37,6 +58,20 @@ function handleResponse(res) {
     switch (res.source) {
         case "create-account":
             textDisplay.textContent = "Registered successfully, "+res.name
+            break;
+        case "login":
+            textDisplay.textContent = "Logging on...";
+            loginData.token = res.token;
+            post("check-token", "token");
+            break;
+        case "check-token":
+            loginData.isIn = true;
+            loginData.user = res.name;
+            loginData.token = res.id;
+            textDisplay.textContent = "Logged in successfully, "+res.name;
+            localStorage.setItem("loginData", JSON.stringify(loginData));
+            document.querySelector("#header-login").textContent = "Logged in: "+res.name;
+            document.querySelector("#logout-button").style.display = "inline";
             break;
     }
 }
