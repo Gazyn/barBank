@@ -46,11 +46,12 @@ function resetLoginData() {
 
 if(localStorage.hasOwnProperty("loginData")) {
     loginData = JSON.parse(localStorage.getItem("loginData"));
+    document.querySelector("#header-login").textContent = "Logged in: "+loginData.user;
+    document.querySelector("#logout-button").style.display = "inline";
 }
 
 function handleResponse(res) {
     res = JSON.parse(res);
-    console.log(res);
     if (res.error) {
         textDisplay.textContent = "Error: "+res.error;
         return;
@@ -62,16 +63,20 @@ function handleResponse(res) {
         case "login":
             textDisplay.textContent = "Logging on...";
             loginData.token = res.token;
+            console.log("set localstorage token "+res.token);
             post("check-token", "token");
             break;
         case "check-token":
             loginData.isIn = true;
             loginData.user = res.name;
-            loginData.token = res.id;
             textDisplay.textContent = "Logged in successfully, "+res.name;
             localStorage.setItem("loginData", JSON.stringify(loginData));
             document.querySelector("#header-login").textContent = "Logged in: "+res.name;
             document.querySelector("#logout-button").style.display = "inline";
+            break;
+        case "logout":
+            textDisplay.textContent = "Logged out successfully, "+loginData.user;
+            resetLoginData();
             break;
     }
 }
@@ -96,5 +101,4 @@ function post(action, type) {
     }
     const request = new Request('http://localhost:3001/bankAPI/'+action, {headers: {'Content-Type': 'application/json'},　method: 'POST', body: JSON.stringify(sendData)});
     fetch(request).then(response => response.text()).then(data => handleResponse(data));
-
 }

@@ -2,6 +2,16 @@ let express = require("express");
 let router = express.Router();
 const base = 'https://barbank.diarainfra.com';
 
+function handleResponse(res, json, source) {
+    console.log(json)
+    if(json === "") {
+        return res.send({'source': source});
+    }
+    json = JSON.parse(json);
+    json.source = source;
+    res.send(json);
+}
+
 function send(res, source, method, path, data, token) {
     const fetch = process.browser ? window.fetch : require('node-fetch').default;
 
@@ -17,8 +27,7 @@ function send(res, source, method, path, data, token) {
     }
     fetch(base+"/"+path, opts)
         .then(r => r.text())
-        .then(json => Object.defineProperty(JSON.parse(json), 'source', {'value': source, enumerable: true}))
-        .then(json => res.send(json))
+        .then(json => handleResponse(res, json, source))
 }
 
 router.post("/create-account", function(req, res) {
@@ -38,6 +47,10 @@ router.post("/login", function(req, res) {
 
 router.post("/check-token", function(req, res) {
     send(res, 'check-token', 'GET', 'users/current', undefined, req.body.token);
+})
+
+router.post("/logout", function(req, res) {
+    send(res, 'logout', 'DELETE', 'sessions', undefined, req.body.token);
 })
 
 module.exports = router;

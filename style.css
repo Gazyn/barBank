@@ -54,6 +54,7 @@ a {
 
 #logout-button {
     font-family: 'Ubuntu', sans-serif;
+    display: none;
     float: right;
     width: 170px;
     height: 40px;
