@@ -3,12 +3,15 @@ let router = express.Router();
 const base = 'https://barbank.diarainfra.com';
 
 function handleResponse(res, json, source) {
-    console.log(json)
     if(json === "") {
         return res.send({'source': source});
     }
     json = JSON.parse(json);
-    json.source = source;
+    if(Array.isArray(json)) {
+        json = {data: json, source: source}
+    } else {
+        json.source = source;
+    }
     res.send(json);
 }
 
@@ -51,6 +54,10 @@ router.post("/check-token", function(req, res) {
 
 router.post("/logout", function(req, res) {
     send(res, 'logout', 'DELETE', 'sessions', undefined, req.body.token);
+})
+
+router.post("/transactions", function(req, res) {
+    send(res, 'transactions', 'GET', 'transactions', undefined, req.body.token);
 })
 
 module.exports = router;

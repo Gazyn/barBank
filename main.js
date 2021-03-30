@@ -4,7 +4,7 @@ let $headline = $('.headline'),
     $nav = $('nav'),
     navHeight = 75;
 
-$(window).scroll(function() {
+$(window).scroll(function () {
     var scrollTop = $(this).scrollTop(),
         headlineHeight = $headline.outerHeight() - navHeight,
         navOffset = $nav.offset().top;
@@ -13,7 +13,7 @@ $(window).scroll(function() {
         'opacity': (1 - scrollTop / headlineHeight)
     });
     $inner.children().css({
-        'transform': 'translateY('+ scrollTop * 0.4 +'px)'
+        'transform': 'translateY(' + scrollTop * 0.4 + 'px)'
     });
     if (navOffset > headlineHeight) {
         $nav.addClass('scrolled');
@@ -22,83 +22,29 @@ $(window).scroll(function() {
     }
 });
 
-
-//Server stuff
-
-const textDisplay = document.querySelector("#text-display")
-
-let loginData = {
-    isIn: false,
-    user: "",
-    token: ""
-}
-
-function resetLoginData() {
-    loginData = {
-        isIn: false,
-        user: "",
-        token: ""
-    }
-    localStorage.removeItem("loginData");
-    document.querySelector("#header-login").textContent = "";
-    document.querySelector("#logout-button").style.display = "none";
-}
-
-if(localStorage.hasOwnProperty("loginData")) {
-    loginData = JSON.parse(localStorage.getItem("loginData"));
-    document.querySelector("#header-login").textContent = "Logged in: "+loginData.user;
-    document.querySelector("#logout-button").style.display = "inline";
-}
-
-function handleResponse(res) {
-    res = JSON.parse(res);
-    if (res.error) {
-        textDisplay.textContent = "Error: "+res.error;
-        return;
-    }
-    switch (res.source) {
-        case "create-account":
-            textDisplay.textContent = "Registered successfully, "+res.name
+function selectTab(e, name) {
+    allClickables.forEach(function(e) {
+        e.style['background-color'] = "white";
+    })
+    e.style['background-color'] = "#e0e0e0";
+    switch(name) {
+        case "register":
+            registerButton.style.display = "inline";
+            loginButton.style.display = "none";
+            nameInput.style.display = "flex";
             break;
         case "login":
-            textDisplay.textContent = "Logging on...";
-            loginData.token = res.token;
-            console.log("set localstorage token "+res.token);
-            post("check-token", "token");
-            break;
-        case "check-token":
-            loginData.isIn = true;
-            loginData.user = res.name;
-            textDisplay.textContent = "Logged in successfully, "+res.name;
-            localStorage.setItem("loginData", JSON.stringify(loginData));
-            document.querySelector("#header-login").textContent = "Logged in: "+res.name;
-            document.querySelector("#logout-button").style.display = "inline";
-            break;
-        case "logout":
-            textDisplay.textContent = "Logged out successfully, "+loginData.user;
-            resetLoginData();
-            break;
+            registerButton.style.display = "none";
+            loginButton.style.display = "inline";
+            nameInput.style.display = "none";
     }
 }
 
-function post(action, type) {
-    if(action === "login" && loginData.isIn) {
-        textDisplay.textContent = "You're already logged in!";
-        return;
+allClickables.forEach(
+    function (e) {
+        e.addEventListener("click", function () {
+            const clicked = (e.id.match(/[^-]+/)[0]); //name of clickable (everything before the -)
+            selectTab(e, clicked);
+        })
     }
-    let sendData = {}
-    if(type === "userpass") {
-        sendData = {
-            name: document.querySelector("#nameInput").value,
-            user: document.querySelector("#userInput").value,
-            pass: document.querySelector("#passInput").value
-        }
-    }
-    if(type === "token") {
-        sendData = {
-            token: loginData.token
-        }
-    }
-    const request = new Request('http://localhost:3001/bankAPI/'+action, {headers: {'Content-Type': 'application/json'},　method: 'POST', body: JSON.stringify(sendData)});
-    fetch(request).then(response => response.text()).then(data => handleResponse(data));
-}
+)

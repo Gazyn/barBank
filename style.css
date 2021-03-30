@@ -17,11 +17,15 @@ a {
 
 #login-div {
     border: 3px solid black;
-    margin-left:25%;
+    margin-left: 25%;
     margin-right: 25%;
     text-align: center;
-    padding: 20px;
     border-radius: 15px;
+}
+
+#login-div input {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #login-button {
@@ -36,9 +40,11 @@ a {
     background: #fff;
     color: black;
     border-radius: 40px;
+    margin-bottom: 20px;
 }
 
 #register-button {
+    display: none;
     font-family: 'Ubuntu', sans-serif;
     width: 170px;
     height: 40px;
@@ -50,6 +56,7 @@ a {
     background: #fff;
     color: black;
     border-radius: 40px;
+    margin-bottom: 20px;
 }
 
 #logout-button {
@@ -79,11 +86,21 @@ a {
     margin: 0 0 10px 0; /* 10px bottom, reset others */
 }
 
+#welcome-text {
+    margin-left: 13%;
+    margin-top: 5%;
+    font-size: 42px;
+}
+
+#acc-balance-number {
+    color: green;
+}
+
 /*--Shit about to get real--*/
 
-#nameInput,
-#userInput,
-#passInput {
+#name-input,
+#user-input,
+#pass-input {
     outline: none;
     display: flex;
     flex-direction: column;
@@ -91,21 +108,22 @@ a {
     border: none;
     font-size: 22px;
     margin-bottom: 16px;
+}
 
+#name-input {
+    display: none;
 }
 
 #text-display {
-    text-align:center;
+    text-align: center;
     font-size: 32px;
 }
-
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     color: #333;
-    height: 1200px;
 }
 
 header {
@@ -120,6 +138,7 @@ header {
     background: url("panorama-2646143_1920.jpg") no-repeat center center;
     background-size: cover;
 }
+
 .headline:after {
     position: absolute;
     content: '';
@@ -141,11 +160,13 @@ header {
     -webkit-animation: fade-in 0.75s 0.25s ease-in forwards;
     animation: fade-in 0.75s 0.25s ease-in forwards;
 }
+
 .inner h1 {
     margin: 0;
     font-size: 32px;
     line-height: 1.2em;
 }
+
 .inner p {
     margin: 0;
     font-size: 1.4em;
@@ -170,6 +191,7 @@ nav ul {
     margin-right: 10%;
     margin-left: 10%;
 }
+
 nav li {
     list-style: none;
     float: left;
@@ -183,6 +205,7 @@ nav a {
     margin: 5px 0 0 20px;
     display: block;
 }
+
 nav a:hover {
     color: #ededed;
 }
@@ -191,6 +214,7 @@ nav a:hover {
     height: 75px;
     float: right;
 }
+
 .logo:before, .logo:after {
     position: fixed;
     font-size: 7em;
@@ -199,10 +223,12 @@ nav a:hover {
     color: #fff;
     top: 25px;
 }
+
 .logo:before {
     content: '\00BB';
     left: 20px;
 }
+
 .logo:after {
     content: '\00AB';
     left: 34px;
@@ -216,6 +242,61 @@ section {
     font-size: 1.2em;
     line-height: 1.6em;
     box-sizing: border-box;
+}
+
+#login-div button:hover, #login-status-div button:hover {
+    background-color: #ededed;
+}
+
+#clickables-div {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.field-clickable {
+    background-color: white;
+    width: 50%;
+    border: 1px solid black;
+    border-top: none;
+    top: 3px;
+    padding: 0 0 20px;
+}
+
+.highlighted {
+    background-color: #ededed;
+}
+
+#register-clickable {
+    border-left: none;
+    border-top-left-radius: 12px;
+    left: 3px;
+}
+
+#login-clickable {
+    border-right: none;
+    border-top-right-radius: 12px;
+    right: 3px;
+}
+
+.clickable-text {
+    display: inline-block;
+    margin: auto 0 auto 0;
+    cursor: default;
+}
+
+#acc-info {
+    margin-left: 2%;
+}
+
+tr, td, th {
+    border: 1px solid black;
+    padding: 7px;
+}
+
+#last-op-div {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
 }
 
 @-webkit-keyframes fade-in {
