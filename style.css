@@ -1,0 +1,369 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.big-text {
+    text-align: center;
+    font-size: 52px;
+    font-family: "Times New Roman";
+    margin-top: 30px;
+}
+
+a {
+    list-style: none;
+    color: black;
+    font-size: 22px;
+    text-decoration: none;
+
+}
+
+#login-div {
+    border: 3px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 0;
+}
+
+#login-div input {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#login-button {
+    font-family: 'Ubuntu', sans-serif;
+    width: 170px;
+    height: 40px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 3px solid black;
+    background: #fff;
+    color: black;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+#register-button {
+    display: none;
+    font-family: 'Ubuntu', sans-serif;
+    width: 170px;
+    height: 40px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 3px solid black;
+    background: #fff;
+    color: black;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+#logout-button {
+    font-family: 'Ubuntu', sans-serif;
+    display: none;
+    float: right;
+    width: 170px;
+    height: 40px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 3px solid black;
+    background: #fff;
+    color: black;
+    border-radius: 40px;
+    margin-right: 2%;
+}
+
+#login-status-div {
+    width: 170px;
+    float: right;
+}
+
+#header-login { /* text above login button showing status */
+    color: #fff;
+    margin: 0 0 10px 0; /* 10px bottom, reset others */
+}
+
+#welcome-text {
+    margin-left: 10%;
+    margin-top: 2%;
+    font-size: 42px;
+}
+
+#acc-balance-number {
+    color: green;
+}
+
+/*--Shit about to get real--*/
+
+#name-input,
+#user-input,
+#pass-input {
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: none;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+#name-input {
+    display: none;
+}
+
+#text-display {
+    text-align: center;
+    font-size: 32px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    height: 100%;
+
+}
+
+header {
+    background: #111;
+}
+
+.headline {
+    position: relative;
+    height: 100px;
+    color: #fff;
+    text-align: center;
+    background: url("panorama-2646143_1920.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.headline:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(17, 17, 17, 0.5);
+}
+
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    z-index: 10;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-animation: fade-in 0.75s 0.25s ease-in forwards;
+    animation: fade-in 0.75s 0.25s ease-in forwards;
+}
+
+.inner h1 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.2em;
+}
+
+.inner p {
+    margin: 0;
+    font-size: 1.4em;
+    font-style: italic;
+    font-family: serif;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+}
+
+nav.scrolled {
+    background: rgba(17, 17, 17, 0.9);
+}
+
+
+nav ul {
+
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+nav li {
+    list-style: none;
+    float: left;
+}
+
+
+nav a {
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    margin: 5px 0 0 20px;
+    display: block;
+}
+
+nav a:hover {
+    color: #ededed;
+}
+
+.logo {
+    height: 75px;
+    float: right;
+}
+
+.logo:before, .logo:after {
+    position: fixed;
+    font-size: 7em;
+    font-weight: 300;
+    line-height: 0;
+    color: #fff;
+    top: 25px;
+}
+
+.logo:before {
+    content: '\00BB';
+    left: 20px;
+}
+
+.logo:after {
+    content: '\00AB';
+    left: 34px;
+}
+
+section {
+    width: 100%;
+    margin-left:25%;
+    margin-right:25%;
+    margin-bottom:0;
+    padding: 20px;
+    max-width: 800px;
+    font-size: 1.2em;
+    line-height: 1.6em;
+    box-sizing: border-box;
+}
+
+#login-div button:hover, #login-status-div button:hover {
+    background-color: #ededed;
+}
+
+#clickables-div {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.field-clickable {
+    background-color: white;
+    width: 50%;
+    border: 1px solid black;
+    border-top: none;
+    top: 3px;
+    padding: 0 0 20px;
+}
+
+.highlighted {
+    background-color: #ededed;
+}
+
+#register-clickable {
+    border-left: none;
+    border-top-left-radius: 12px;
+    left: 3px;
+}
+
+#login-clickable {
+    border-right: none;
+    border-top-right-radius: 12px;
+    right: 3px;
+}
+
+.clickable-text {
+    display: inline-block;
+    margin: auto 0 auto 0;
+    cursor: default;
+}
+
+#acc-info {
+    margin-left: 2%;
+    width: 50%;
+    display:block;
+    margin-righ:0;
+    border: 2px solid black;
+    padding: 20px 350px 20px 20px;
+
+
+}
+
+tr, td, th {
+    border: 1px solid black;
+    padding: 7px;
+}
+
+#last-op-div {
+    align-items: center;
+    text-align: center;
+    float:right;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: 2px solid black;
+    padding:20px;
+}
+
+#form1 {
+    margin-right: 70%;
+    margin-left:3%;
+    border: 2px solid black;
+    padding: 20px 500px 20px 20px;
+}
+
+#form-to, #form-amount, #form-exp{
+    margin-bottom:3%;
+}
+
+.account-info {
+    flex-direction: row;
+    display: flex;
+    margin-bottom:2%;
+}
+
+#operations {
+    table-layout: fixed;
+    align-items: center;
+    text-align: center;
+    float:right;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+<!---->
+
+

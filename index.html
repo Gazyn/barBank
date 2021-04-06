@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>eSpring</title>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo"></div>
+    <ul>
+        <li>
+            <a href="#">News</a>
+            <a href="#">About us</a>
+            <a href="#">Login</a>
+        </li>
+    </ul>
+</nav>
+<header>
+    <div class="headline">
+        <div class="inner">
+            <h1>Hello</h1>
+            <p>Bank in daytime, document forgery when coppers aren't watching</p>
+        </div>
+    </div>
+</header>
+<!-- Actual page starts here, previous was header and nav bar-->
+<section>
+    <h1 class="big-text">e-Spring barBank </h1>
+    <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusamus amet cum, deleniti dicta dignissimos eligendi illo ipsa laborum maxime natus officia perspiciatis quis
+        rem repellendus sequi sit suscipit?
+        Aliquam, quae?</h5>
+</section>
+
+<!-- Login box -->
+<div id="login-div">
+    <div id="clickables-div">
+        <div class="field-clickable" id="register-clickable"><span class="clickable-text">Register</span></div>
+        <div class="field-clickable highlighted" id="login-clickable"><span class="clickable-text">Login</span></div>
+    </div>
+    <input type="text" id="name-input" placeholder="Name" required>
+    <input type="text" id="user-input" placeholder="Username" required>
+    <input type="password" id="pass-input" placeholder="Password" required>
+    <button id="login-button" onclick="post('login', 'userpass')">Login</button>
+    <button id="register-button" onclick="post('create-account', 'userpass')">Register</button>
+</div>
+
+<p id="text-display"></p>
+</body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="consts.js"></script>
+<script src="serverPost.js"></script>
+<script src="main.js"></script>
+</html>
